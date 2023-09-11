@@ -51,4 +51,27 @@
             <td style="text-align: center;">7Hrs</td>
         </tr>
     </table>
+    <hr>
+    <h2>Code Snippet</h2>
+    <b>Getting last tweet with PHP</b>
+    <a href="https://stackoverflow.com/questions/6416815/getting-last-tweet-with-php">Stackoverflow link</a>
+    <pre>
+        <?php
+
+        function getTwitterStatus($userid){
+        $url = "https://api.twitter.com/1/statuses/user_timeline/$userid.xml?count=1&include_rts=1callback=?";
+
+        $xml = simplexml_load_file($url) or die("could not connect");
+
+            foreach($xml->status as $status){
+            $text = $status->text;
+            }
+            echo $text;
+        }
+
+        // USAGE
+        getTwitterStatus("chriscoyier");
+
+        ?>
+    </pre>
 </body>
